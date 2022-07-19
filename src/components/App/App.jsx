@@ -25,10 +25,6 @@ export const App = () => {
     setContacts(s => s.filter(el => el.id !== id));
   };
 
-  const handleFilterChange = e => {
-    setFilter(e.currentTarget.value);
-  };
-
   const handleFilterByName = () => {
     const normalizeFilter = filter.toLowerCase();
     return contacts.filter(contact =>
@@ -42,7 +38,10 @@ export const App = () => {
         <MainTitle>Phonebook</MainTitle>
         <ContactForm onSubmit={addContact} />
         <Title>Contacts</Title>
-        <Filter value={filter} onChange={handleFilterChange} />
+        <Filter
+          value={filter}
+          onChange={e => setFilter(e.currentTarget.value)}
+        />
         <ContactList contacts={handleFilterByName()} onDelete={deleteContact} />
       </Container>
     </Section>
